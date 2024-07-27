@@ -1,0 +1,512 @@
+/* Global CSS */
+:root
+{
+    --white: rgb(228, 231, 244);
+    --blue: #5977F6ff;
+    --light-blue: #8BA4F7ff;
+    --off-white: #F7F8FDff;
+    --light-text: #A8B6D8ff;
+    --dark-text:#343C50ff;
+}
+body,html
+{
+    padding: 0px;
+    margin: 0px;
+    font-family:'Poppins',sans-serif;
+    overflow-x: hidden;
+    background-color: var(--white);
+}
+.icons
+{
+    color:var(--dark-text);
+}
+.noMargin
+{
+    margin:0px;
+}
+.margin10
+{
+    margin:10px;
+}
+.padding10
+{
+    padding:10px;
+}
+.textAlignCenter
+{
+    text-align: center;
+}
+.h1
+{
+    color:var(--dark-text);
+    font-size: 2.5rem;
+    line-height: 1.8rem;
+}
+.subheading
+{
+    color:var(--dark-text);
+}
+.actionIcons
+{
+    font-size: 2rem;
+    padding:5px;
+    cursor: pointer;
+    border:1px solid var(--dark-text);
+    border-radius: 5px;
+    transition-duration: 0.2s;
+}
+@media (prefers-color-scheme: dark)
+{
+    :root
+    {
+        --white : rgb(45, 43, 49);
+        --off-white : rgb(50, 50, 50);
+        --dark-text:#A8B6D8ff;
+        --light-text: #343C50ff;
+    }
+}
+/* Auth CSS */
+.auth
+{
+    height:100vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--white);
+}
+.image
+{
+    width:100%;
+    height: 100%;
+    border-right: 3px dashed var(--dark-text);
+}
+.p
+{
+    position: absolute;
+    bottom:0px;
+    right:0px;
+    margin:10px 15px;
+    color : var(--dark-text);
+}
+.a
+{
+    font-weight: 800;
+    cursor: pointer;
+    color:white;
+}
+.card
+{
+    box-sizing: border-box;
+    border-radius: 9px;
+    border: 1px solid silver;
+    background-color: var(--blue);
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width:80%;
+    height:80%;
+    border:3px dashed var(--dark-text);
+    padding-bottom:25px;
+}
+.card > *
+{
+    flex-grow: 1;
+}
+.customBtn
+{
+    width:65%;
+    background-color: var(--off-white);
+    font-family: 'Poppins',sans-serif;
+    color:var(--dark-text);
+    padding:10px 20px;
+    border-radius:45px;
+    border:none;
+    text-align: right;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor:pointer;
+    transition-duration: 0.3s;
+}
+.container
+{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    height:100%;
+}
+.actionsDialog
+{
+    width:85%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.actionsDialog > *
+{
+    margin:5px;
+}
+/* Home CSS */
+.home
+{
+    width:100vw;
+    min-height:100vh;
+    height:max-content;
+    background-color: var(--white);
+}
+.nav
+{
+    z-index: 10;
+    padding:20px;
+    box-sizing: border-box;
+    height:8vh;
+    background-color: var(--blue);
+    box-shadow: 0px 0px 12px var(--blue);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color:var(--dark-text);
+    position: sticky;
+    top:0px;
+}
+.navtoolbar
+{
+    display: flex;
+    align-items: center;
+}
+.navtoolbar > *
+{
+    margin:5px;
+}
+.video
+{
+    height: 100%;
+    width:100%;
+    mask-image: url('../images/blobmask.svg');
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: contain;
+    -webkit-mask-image: url('../images/blobmask.svg');
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    -webkit-mask-size: contain;
+}
+.videoEffects
+{
+    height: 100%;
+    width:100%;
+    position: absolute;
+    transform:scale(1.1); 
+}
+.horizontalContainer
+{
+    box-sizing: border-box;
+    height:92vh;
+    display:flex;
+    align-items: center;
+}
+.textSlide
+{
+    box-sizing: border-box;
+    height:100%;
+    flex-grow: 1;
+    display:flex;
+    padding:25px;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+}
+.h1 > strong
+{
+    background-image: linear-gradient(to right, var(--blue), var(--light-blue));
+    color: transparent;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+}
+.ActionBtn
+{
+    margin:20px 0px;
+    cursor: pointer;
+    padding: 15px 25px;
+    border-radius:25px;
+    font-size:1rem;
+    background-image: linear-gradient(to right,var(--blue),var(--light-blue));
+    border:none;
+    font-family: 'Poppins',sans-serif;
+    color:white;
+    transition-duration: 0.3s;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+/* Chat Setup */
+.chatSetup
+{
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height:100vh;
+    height: max-content;
+    width:100%;
+}
+.optionField
+{
+    padding:10px;
+    width:clamp(200px,60%,450px);
+    font-family: 'Poppins',sans-serif;
+    color:white;
+    border-radius:25px;
+    background-color: var(--light-blue);
+}
+.boolField
+{
+    width:20px;
+    height:20px;
+    accent-color: var(--dark-text);
+}
+.locationCheckbox
+{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    width:clamp(200px,60%,450px);
+}
+/* Video Text Chat */
+.videoTextChat
+{
+    width: 100%;
+    height: 100vh;
+}
+.textChat
+{
+    box-sizing: border-box;
+    height:92vh;
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-direction: column;
+}
+.textChatInput
+{
+    box-sizing: border-box;
+    width: 100%;
+    height:clamp(45px,8%,50px);
+    display: flex;
+    align-items: center;
+    background-color: var(--light-text);
+}
+.textChatInput > input
+{
+    box-sizing: border-box;
+    height:100%;
+    margin:0px;
+    flex-grow: 1;
+    width:1px;
+    font-family: 'Poppins',sans-serif;
+    padding: 0px 20px;
+    font-size: 1rem;
+}
+.textChatInput > button
+{
+    width:60px;
+    height:100%;
+    background-color: var(--blue);
+    border:none;
+    cursor: pointer;
+    transition-duration: 0.2s;
+}
+.textChatInput > button > *
+{
+    font-size:1.8rem;
+    color:var(--light-text);
+}
+.chatMessages
+{
+    height:10px;
+    flex-grow: 1;
+    background-color: var(--light-text);
+}
+.videoChat
+{
+    box-sizing: border-box;
+    height:92vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.remoteVideo
+{
+    width : 100%;
+    height:10px;
+    flex-grow: 1;
+    background-color: #343C50ff;
+    object-fit: cover;
+    transform: scaleX(-1);
+    position: relative;
+}
+.localVideo
+{
+    width : 100%;
+    height:10px;
+    flex-grow: 1;
+    background-color: #343C50ff;
+    object-fit: cover;
+    transform: scaleX(-1);
+}
+.adsSideBar
+{
+    width:30%;
+    height:100vh;
+    border: 2px solid yellow;
+}
+.inVideoAdsBanner
+{
+    box-sizing: border-box;
+    padding:10px;
+    color:white;
+    width:100%;
+    height:clamp(min-content,8%,max-content);
+}
+@media (hover: hover)
+{
+    /* Global CSS */
+    .actionIcons:hover
+    {
+        outline: 1px solid var(--dark-text);
+        outline-offset: 3px;
+    }
+    /* Auth CSS */
+     .customBtn:hover
+    {
+       outline :1px solid var(--dark-text);
+       filter: drop-shadow(0px 0px 5px var(--white));
+       transform:scale(0.95);
+    }
+    /* Home CSS */
+    .ActionBtn:hover
+    {
+        outline : 2px dashed var(--light-blue);
+        transform: scale(0.95);
+        outline-offset: 4.5px;
+    }
+    /* Text-Chat+Video-Chat */
+    .textChatInput > button:hover
+    {
+        background-color: var(--light-blue);
+    }
+}
+@media screen and (max-width : 1130px)
+{
+    /* Auth CSS */
+    .auth .h1
+    {
+        font-size: 1.7rem;
+    }
+    .auth .customBtn
+    {
+        width: 80%;
+    }
+    /* Home CSS */
+    .home .horizontalContainer
+    {
+        flex-direction:column;
+    }
+    .home .ActionBtn
+    {
+        margin:25px auto;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .home .subheading
+    {
+        font-size:0.9rem;
+        text-align: center;
+    }
+    .home .h1
+    {
+        width: 100%;
+        text-align: center;
+    }
+    /* Video-Text Chat */
+    .videoTextChat .subheading
+    {
+        font-size:1rem;
+    }
+    .videoChat .textChatInput
+    {
+        font-size: 0.8rem;
+    }
+}
+@media screen and (max-width : 980px)
+{
+    /* Auth CSS */
+    #imageContainer
+    {
+        display: none;
+    }
+    .auth .customBtn
+    {
+        padding:25px;
+        font-size:1.2rem;
+    }    
+}
+@media screen and (max-width : 610px)
+{
+    /* Auth CSS */
+    .auth .customBtn
+    {
+        padding:10px 20px;
+        font-size:0.9rem;
+    }
+    .auth .card
+    {
+        height: max-content;
+    }
+    
+}
+@media screen and (max-width : 745px)
+{
+    /* Chat Setup */
+    .chatSetup .locationCheckbox
+    {
+        width:90%;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+    .chatSetup .optionField
+    {
+        width:90%;
+    }
+}
+@media screen and (max-width : 509px)
+{
+    /* Chat Setup */
+    .chatSetup .locationCheckbox
+    {
+        justify-content: center;
+    }
+    .chatSetup .card
+    {
+        width:95%;
+        height:95%;
+    }
+    /* VideoTextChat */
+    .videoTextChat .horizontalContainer
+    {
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: stretch;
+    }
+    .videoTextChat .horizontalContainer > .videoChat
+    {
+        width: 100%;
+    }
+}

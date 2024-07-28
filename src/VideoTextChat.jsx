@@ -64,6 +64,7 @@ export default function VideoTextChat()
         {
             localStream = await navigator.mediaDevices.getUserMedia(constraints);
             localVideoRef.current.srcObject = localStream;
+            console.log('Local stream tracks:', localStream.getTracks());
 
             socket.on('user-disconnected', userId => 
             {
@@ -173,9 +174,18 @@ export default function VideoTextChat()
     
         peerConnection.ontrack = event => 
         {
-            console.log('Received remote stream',event);
-            remoteVideoRef.current.srcObject = event.streams[0];
+            console.log('Received remote stream', event);
+            if (event.streams[0].getVideoTracks().length > 0)
+            {
+                console.log('Remote stream has video tracks');
+                remoteVideoRef.current.srcObject = event.streams[0];
+            }
+            else
+            {
+                console.log('Remote stream does not have video tracks');
+            }
         };
+
         
         if(localStream)
         {

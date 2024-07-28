@@ -10,7 +10,6 @@ export default function VideoTextChat()
     let socket;
     const hideAdsSideBar = useMediaQuery({ query: '(max-width: 820px)' });
     const isAMobile = useMediaQuery({ query: '(max-width: 509px)' });
-    
     const localVideoTabletCSS = 
     {
         position: 'absolute',
@@ -41,21 +40,13 @@ export default function VideoTextChat()
     
     useEffect(() => 
     {
-        if (!joinedRoomRef.current)
+        if(!joinedRoomRef.current)
         {
             socket = io('http://localhost:5000');
+            joinedRoomRef.current = true;
             joinRoom();
-            joinedRoomRef.current = true; // Mark as joined
-            socket.emit('get-partner');
         }
-
-        return () => 
-        {
-            socket.off('user-disconnected');
-            socket.off('ice-candidate');
-            socket.off('offer');
-            socket.off('answer');
-        };
+    
     }, []);
 
     async function joinRoom() 
@@ -64,7 +55,6 @@ export default function VideoTextChat()
         {
             localStream = await navigator.mediaDevices.getUserMedia(constraints);
             localVideoRef.current.srcObject = localStream;
-            console.log('Local stream tracks:', localStream.getTracks());
 
             socket.on('user-disconnected', userId => 
             {
@@ -100,7 +90,8 @@ export default function VideoTextChat()
                 peerConnections[userId].setRemoteDescription(new RTCSessionDescription(offer))
                     .then(() => peerConnections[userId].createAnswer())
                     .then(answer => peerConnections[userId].setLocalDescription(answer))
-                    .then(() => {
+                    .then(() => 
+                    {
                         socket.emit('answer', userId, peerConnections[userId].localDescription);
                         console.log('sent an answer');
                     })
@@ -138,6 +129,8 @@ export default function VideoTextChat()
                 })
                 .catch(error => console.error('Error creating offer:', error));
             });
+
+            socket.emit('get-partner');
         } 
         catch (error)
         {
@@ -167,39 +160,12 @@ export default function VideoTextChat()
             }
         };
     
-        peerConnection.onicegatheringstatechange = () => 
+        peerConnection.ontrack = (event) => 
         {
-            console.log('ICE gathering state:', peerConnection.iceGatheringState);
+            remoteVideoRef.current.srcObject = event.streams[0];
         };
-    
-        peerConnection.ontrack = event => 
-        {
-            console.log('Received remote stream', event);
-            if (event.streams[0].getVideoTracks().length > 0)
-            {
-                console.log('Remote stream has video tracks');
-                remoteVideoRef.current.srcObject = event.streams[0];
-            }
-            else
-            {
-                console.log('Remote stream does not have video tracks');
-            }
-        };
-
         
-        if(localStream)
-        {
-            localStream.getTracks().forEach(track => 
-            {
-                peerConnection.addTrack(track, localStream);
-                console.log('Added local track:', track);
-            });
-        }
-        else
-        {
-            console.log("Local Stream not available");
-        }
-        
+        localStream.getTracks().forEach(track => peerConnection.addTrack(track, localStream));
 
         peerConnections[userId] = peerConnection;
         console.log(peerConnection);
@@ -222,8 +188,8 @@ export default function VideoTextChat()
                         </div>
                     </div>
                     <div className="videoChat" style={hideAdsSideBar ? (isAMobile ? {} : {width: '60%'}) : {width: '45%'}}>
-                        <video className="remoteVideo" ref={remoteVideoRef}  autoPlay></video>
-                        <video className="localVideo" ref={localVideoRef} autoPlay style={hideAdsSideBar ? (isAMobile ? localVideoMobileCSS : localVideoTabletCSS) : {}}></video>
+                        <video className="remoteVideo" ref={remoteVideoRef}  autoPlay playsInline ></video>
+                        <video className="localVideo" ref={localVideoRef} autoPlay  playsInline style={hideAdsSideBar ? (isAMobile ? localVideoMobileCSS : localVideoTabletCSS) : {}}></video>
                         {hideAdsSideBar && <div className='inVideoAdsBanner'>Ads Banner</div>}
                     </div>
                     {!hideAdsSideBar && <div className='adsSideBar'>Some Ads Here...</div>} 
